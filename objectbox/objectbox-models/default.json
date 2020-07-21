@@ -1,0 +1,84 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:4292640467526984794",
+      "lastPropertyId": "10:7794520817337244587",
+      "name": "Trip",
+      "properties": [
+        {
+          "id": "1:7438248590062368697",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1884581668132572809",
+          "name": "invoiceNo",
+          "indexId": "1:7586902658381760878",
+          "type": 9,
+          "flags": 2080
+        },
+        {
+          "id": "3:484704793008078584",
+          "name": "transporterId",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "4:9061861085783309764",
+          "name": "gateId",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "5:3218424950829492607",
+          "name": "truckRegNo",
+          "type": 9
+        },
+        {
+          "id": "6:7103495127747922925",
+          "name": "receivedParcels",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "7:8743717428091195550",
+          "name": "receivedQuantity",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "8:4801495346510205207",
+          "name": "sealNumber",
+          "type": 9
+        },
+        {
+          "id": "9:7907501578106321466",
+          "name": "driverName",
+          "type": 9
+        },
+        {
+          "id": "10:7794520817337244587",
+          "name": "syncStatus",
+          "type": 5,
+          "flags": 4
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:4292640467526984794",
+  "lastIndexId": "1:7586902658381760878",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_below="@+id/sealNo"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="34dp"
+            android:background="#F55B04"
+            android:focusableInTouchMode="true"
+            android:onClick="submitAPI"
+            android:text="@string/submit_string" />
+
+        <me.dm7.barcodescanner.zxing.ZXingScannerView
+            android:id="@+id/zXingScannerView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/datetime" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtReceivedParcels"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/button_background"
+            android:focusableInTouchMode="true"
+            android:text="Clear"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnLoad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSave"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/button_background"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:text="Finish Loading"
+            android:textSize="15dp"
+            app:sub_btn_line_color="#42FF33" />
+
+        <TextView
+            android:id="@+id/datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="22dp"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Date"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edtReceivedQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/invoiceBarcodeView"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="-2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="-5dp"
+            android:hint="Received Quantity"
+            android:inputType="number"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/edtReceivedParcels"
+            android:layout_width="407dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtReceivedQuantity"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="-4dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="4dp"
+            android:hint="Received Parcel"
+            android:inputType="number"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/driverName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnLoad"
+            android:layout_alignStart="@+id/button"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:hint="Driver Name"
+            android:textSize="15dp"/>
+                <requestFocus>
+                 </requestFocus>
+
+
+        <EditText
+            android:id="@+id/sealNo"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/driverName"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="14dp"
+            android:hint="Seal No"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/printDocument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sealNo"
+            android:layout_marginTop="6dp"
+            android:background="#F55B04"
+            android:enabled="false"
+            android:visibility="gone"
+            android:focusableInTouchMode="true"
+            android:onClick="printDocument"
+            android:text="@string/print_string" />
+
+        <Button
+            android:id="@+id/btnScanInvoice"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@+id/zXingScannerView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/button_background"
+            android:focusableInTouchMode="true"
+            android:onClick="scanInvoiceBarcode"
+            android:text="Invoice"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/invoiceBarcodeView"
+            android:layout_width="377dp"
+            android:layout_height="29dp"
+            android:layout_below="@+id/btnScanInvoice"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginRight="31dp"
+            android:text="Invoice Barcode View" />
+
+        <Button
+            android:id="@+id/btnNextInvoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnClear"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"
+            android:focusableInTouchMode="true"
+            android:text="Next Invoice"/>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnNextInvoice"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"
+            android:focusableInTouchMode="true"
+            android:onClick="btnSave"
+            android:visibility="gone"
+            android:text="Save" />
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+</ScrollView>

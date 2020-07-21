@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Dispatch</string>
+    <string name="print_string">print</string>
+    <string name="submit_string">submit</string>
+</resources>
