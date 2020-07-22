@@ -64,7 +64,7 @@
             android:textSize="20sp" />
 
         <me.dm7.barcodescanner.zxing.ZXingScannerView
-            android:id="@+id/zXingScannerView"
+            android:id="@+id/zXingScannerViewMain"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_below="@+id/datetime" />
@@ -73,7 +73,7 @@
             android:id="@+id/truckRegNo"
             android:layout_width="394dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/zXingScannerView"
+            android:layout_below="@+id/zXingScannerViewMain"
             android:layout_alignStart="@+id/button"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"

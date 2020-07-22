@@ -31,6 +31,8 @@ public interface TripsApi {
             @Field("gateNo") String gateNo,
             @Field("receivedParcels") int issuedParcels,
             @Field("receivedQuantity") int issuedQuantity
+            //@Field("driverName") String driverName
+            //@Field("sealNumber") String sealNumber
 
     );
 

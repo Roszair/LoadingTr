@@ -26,7 +26,7 @@
             android:text="@string/submit_string" />
 
         <me.dm7.barcodescanner.zxing.ZXingScannerView
-            android:id="@+id/zXingScannerView"
+            android:id="@+id/zXingScannerViewNext2"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_below="@+id/datetime" />
@@ -143,10 +143,10 @@
             android:text="@string/print_string" />
 
         <Button
-            android:id="@+id/btnScanInvoice"
+            android:id="@+id/btnScanInvoiceUI"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_below="@+id/zXingScannerView"
+            android:layout_below="@+id/zXingScannerViewNext2"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
@@ -155,7 +155,6 @@
             android:layout_marginEnd="1dp"
             android:background="@drawable/button_background"
             android:focusableInTouchMode="true"
-            android:onClick="scanInvoiceBarcode"
             android:text="Invoice"
             android:textSize="15dp" />
 
@@ -163,7 +162,7 @@
             android:id="@+id/invoiceBarcodeView"
             android:layout_width="377dp"
             android:layout_height="29dp"
-            android:layout_below="@+id/btnScanInvoice"
+            android:layout_below="@id/btnScanInvoiceUI"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -187,7 +186,7 @@
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnNextInvoice"
+            android:layout_below="@id/btnNextInvoice"
             android:layout_marginTop="8dp"
             android:background="@drawable/button_background"
             android:focusableInTouchMode="true"

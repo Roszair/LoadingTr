@@ -59,12 +59,13 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
     private long transporterNo;
     private long dateTime;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next2);
 
-        dateTime = getIntent().getIntExtra(DATETIME_KEY, -1);
+        dateTime = getIntent().getLongExtra(DATETIME_KEY, -1);
         truckRegNo = getIntent().getStringExtra(TRUCK_REG_NO_KEY);
         gateNo = getIntent().getLongExtra(GATE_NO_KEY, -1);
         transporterNo = getIntent().getLongExtra(TRANSPORTER_NO_KEY, -1);
@@ -72,10 +73,10 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
         tripsApi = APIClient.getRetrofit().create(TripsApi.class);
 
         //txtInvoiceBarcodeTextView = findViewById(R.id.invoiceBarcodeView);
-        invoiceBarcodeTextView = findViewById(com.cargocarriers.dispatch.R.id.invoiceBarcodeView);
+        invoiceBarcodeTextView = findViewById(R.id.invoiceBarcodeView);
         btnReset = findViewById(R.id.btnClear);
         btnSubmit = findViewById(R.id.btnSubmit);
-        btnScanInvoice = findViewById(R.id.btnScanInvoice);
+        btnScanInvoice = findViewById(R.id.btnScanInvoiceUI);
         btnNextInvoice = findViewById(R.id.btnNextInvoice);
         edtReceivedParcels = findViewById(R.id.edtReceivedParcels);
         edtReceivedQuantity = findViewById(R.id.edtReceivedQuantity);
@@ -93,13 +94,13 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
         Date timenow = Calendar.getInstance().getTime();
         datetime.setText(timenow.toString());
 
-       /* btnSubmit.setOnClickListener(new View.OnClickListener() {
+        /*btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 spinner.setVisibility(View.VISIBLE);
-                TripJSON trip = new TripJSON(invoiceNo, gateId, transporterId, Driver, SealNumber, truckRegNo, Integer.parseInt(receivedParcels.getText().toString()), Integer.parseInt(receivedQuantity.getText().toString()));
-                putTrips(trip);
-                updateTrips();
+               // TripJSON trip = new TripJSON(invoiceNo, gateId, transporterId, driverName, sealNumber, truckRegNo, Long.parseLong(receivedParcels.getText().toString()), Long.parseLong(receivedQuantity.getText().toString()));
+                //uploadTrip(trip);
+                //updateTrips();
 
 
             }
@@ -194,8 +195,9 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
     }
 
     //scANNING Invoice
-    public void scanInvoiceBarcode(View view) {
-        zXingScannerView = findViewById(R.id.zXingScannerView);
+    public void scanInvoiceBarcode() {
+        PermissionRequest.Companion.permissions(this);
+        zXingScannerView = findViewById(R.id.zXingScannerViewNext2);
         zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
             public void handleResult(Result result) {
                 invoiceNo = result.getText();
@@ -221,7 +223,7 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
             case R.id.btnNextInvoice:
                 nextInvoice();
                 break;
-            case R.id.btnScanInvoice:
+            case R.id.btnScanInvoiceUI:
                 scanInvoiceBarcode();
                 break;
             default:
@@ -229,12 +231,8 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    private void scanInvoiceBarcode() {
-
-    }
-
     private void nextInvoice() {
-        invoiceNo = btnScanInvoice.getText().toString();
+        invoiceNo = invoiceBarcodeTextView.getText().toString();
         sealNo = edtSealNo.getText().toString();
         driverName = edtDriver.getText().toString();
         receivedQuantity = Integer.parseInt(edtReceivedQuantity.getText().toString());

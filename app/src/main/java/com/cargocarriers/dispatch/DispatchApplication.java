@@ -1,12 +1,12 @@
 package com.cargocarriers.dispatch;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
 
 import com.cargocarriers.objectbox.base.ObjectBox;
 
 import Network.APIClient;
 
-public class DispatchApplication extends Application {
+public class DispatchApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
