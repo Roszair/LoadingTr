@@ -26,10 +26,10 @@
             android:text="@string/submit_string" />
 
         <me.dm7.barcodescanner.zxing.ZXingScannerView
-            android:id="@+id/zXingScannerViewNext2"
+            android:id="@+id/zXingScannerViewMain"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_below="@+id/datetime" />
+            android:layout_below="@id/datetime" />
 
         <Button
             android:id="@+id/btnClear"
@@ -77,7 +77,7 @@
             android:id="@+id/edtReceivedQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/invoiceBarcodeView"
+            android:layout_below="@id/invoiceBarcodeView"
             android:layout_alignStart="@+id/button"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="-2dp"
@@ -146,7 +146,7 @@
             android:id="@+id/btnScanInvoiceUI"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_below="@+id/zXingScannerViewNext2"
+            android:layout_below="@id/zXingScannerViewMain"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
@@ -154,23 +154,19 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="1dp"
             android:background="@drawable/button_background"
-            android:focusableInTouchMode="true"
             android:text="Invoice"
             android:textSize="15dp" />
 
         <TextView
             android:id="@+id/invoiceBarcodeView"
-            android:layout_width="377dp"
-            android:layout_height="29dp"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
             android:layout_below="@id/btnScanInvoiceUI"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="31dp"
-            android:layout_marginRight="31dp"
-            android:text="Invoice Barcode View" />
+           android:layout_margin="5dp"
+            tools:text="Invoice Barcode View" />
 
         <Button
             android:id="@+id/btnNextInvoice"

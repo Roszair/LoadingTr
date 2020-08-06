@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         PermissionRequest.Companion.permissions(this);
+        zXingScannerView = findViewById(R.id.zXingScannerViewMain);
         gateBarcodeTextView = findViewById(com.cargocarriers.dispatch.R.id.gateBarcodeTextView);
         transporterBarcodeView = findViewById(com.cargocarriers.dispatch.R.id.transporterBarcodeView);
         edtTruckRegNo = findViewById(R.id.truckRegNo);
@@ -80,10 +81,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        zXingScannerView.stopCamera();
+    }
+
+
     public void gate(View view) {
         PermissionRequest.Companion.permissions(this);
-        zXingScannerView = findViewById(R.id.zXingScannerViewMain);
-        zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
+             zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
             public void handleResult(Result result) {
                 //gateNo = String.valueOf (parseInt (result.getText()));
                 gateNo = Long.parseLong(result.getText());
@@ -96,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void transporter(View view) {
         PermissionRequest.Companion.permissions(this);
-        zXingScannerView = findViewById(R.id.zXingScannerViewMain);
         zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
             public void handleResult(Result result) {
                 transporterNo = Long.parseLong(result.getText());

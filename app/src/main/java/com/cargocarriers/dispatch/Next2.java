@@ -194,8 +194,7 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
         clearData();
     }
 
-    //scANNING Invoice
-    public void scanInvoiceBarcode() {
+    /*public void scanInvoiceBarcode() {
         PermissionRequest.Companion.permissions(this);
         zXingScannerView = findViewById(R.id.zXingScannerViewNext2);
         zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
@@ -208,6 +207,32 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
             }
         });
         zXingScannerView.startCamera();
+    }*/
+
+    public void scanInvoiceBarcode() {
+        PermissionRequest.Companion.permissions(this);
+        ZXingScannerView zXingInvoiceScanner = new ZXingScannerView(this);
+        zXingInvoiceScanner.setResultHandler(new ZXingScannerView.ResultHandler() {
+            @Override
+            public void handleResult(Result result) {
+                invoiceNo = result.getText();
+                invoiceBarcodeTextView.setText(result.getText());
+                //zXingInvoiceScanner.resumeCameraPreview(this);
+
+            }
+        });
+        zXingInvoiceScanner.startCamera();
+
+        /*zXingScannerView = findViewById(R.id.zXingScannerViewMain);
+        zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
+            public void handleResult(Result result) {
+                //gateNo = String.valueOf (parseInt (result.getText()));
+                invoiceNo = result.getText();
+                invoiceBarcodeTextView.setText(result.getText());
+                zXingScannerView.resumeCameraPreview(this);
+            }
+        });
+        zXingScannerView.startCamera();*/
     }
 
     @Override
@@ -230,7 +255,7 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-
+// Pressing this method, data will be stored and sync. It will only sync required data excluding sealNo and driverName
     private void nextInvoice() {
         invoiceNo = invoiceBarcodeTextView.getText().toString();
         sealNo = edtSealNo.getText().toString();
@@ -255,17 +280,19 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void validateTrips() {
-        if (!driverName.isEmpty() && !sealNo.isEmpty()) {
+        if (driverName != null && !driverName.isEmpty() && sealNo != null && !sealNo.isEmpty())//edited on 31/07/2020
+        //if (!driverName.isEmpty() && !sealNo.isEmpty())
+        {
             for (Trip trip : tripHashMap.values()) {
                 trip.setSealNumber(sealNo);
                 trip.setDriverName(driverName);
-                TripData.Companion.insertOrUpdate(trip);
+                TripData.Companion.insertOrUpdate(trip);//send data into database
             }
             finalizeTripsSubmission();
         } else
             invalidInput();
     }
-
+// this method will send to webAPI
     private void finalizeTripsSubmission() {
         SyncTrips.Companion.uploadUnSyncedTrips();
     }
