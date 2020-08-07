@@ -1,5 +1,6 @@
 package com.cargocarriers.dispatch;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import com.google.zxing.Result;
 import java.util.Calendar;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import static com.cargocarriers.dispatch.ScannerActivity.ScannerConstants.SCAN_RESULT;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String TRANSPORTER_NO_KEY = "TransporterNoKey";
     public static final String GATE_NO_KEY = "GateNoKey";
     public static final String TRUCK_REG_NO_KEY = "TruckRegNoKey";
+    public static final int SCAN_SERIAL_REQUEST = 1007;
+    public static final String SCAN_MODE = "SCAN_MODE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void invalidInput() {
-        new AlertDialog.Builder(MainActivity.this)
+        new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogTheme)
                 .setTitle("Info Alert")
                 .setMessage("Please enter all information in the required fields.")
                 .setCancelable(false)
@@ -87,30 +92,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         zXingScannerView.stopCamera();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        edtTruckRegNo.getText().clear();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SCAN_SERIAL_REQUEST){
+            if(data != null){
+                ResultMode resultMode = ResultMode.Companion.getByVal(data.getIntExtra(SCAN_MODE, -1));
+                String result = data.getStringExtra(SCAN_RESULT);
+                switch (resultMode){
+                    case SCAN_GATE:
+                        if(result != null) {
+                            gateNo = Long.parseLong(result);
+                            gateBarcodeTextView.setText(result);
+                        }
+                        break;
+                    case SCAN_TRANSPORTER:
+                        if(result != null) {
+                            transporterNo = Long.parseLong(result);
+                            transporterBarcodeView.setText(result);
+                        }
+                        break;
+                }
+            }
+        }
+    }
 
     public void gate(View view) {
         PermissionRequest.Companion.permissions(this);
-             zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
-            public void handleResult(Result result) {
-                //gateNo = String.valueOf (parseInt (result.getText()));
-                gateNo = Long.parseLong(result.getText());
-                gateBarcodeTextView.setText(result.getText());
-                zXingScannerView.resumeCameraPreview(this);
-            }
-        });
-        zXingScannerView.startCamera();
+        Intent intent = new Intent(this, ScannerActivity.class);
+        intent.putExtra(SCAN_MODE, ResultMode.SCAN_GATE.getId());
+        startActivityForResult(intent, SCAN_SERIAL_REQUEST);
     }
 
     public void transporter(View view) {
         PermissionRequest.Companion.permissions(this);
-        zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
-            public void handleResult(Result result) {
-                transporterNo = Long.parseLong(result.getText());
-                transporterBarcodeView.setText(String.valueOf(transporterNo));
-                zXingScannerView.resumeCameraPreview(this);
-
-            }
-        });
-        zXingScannerView.startCamera();
+        Intent intent = new Intent(this, ScannerActivity.class);
+        intent.putExtra(SCAN_MODE, ResultMode.SCAN_TRANSPORTER.getId());
+        startActivityForResult(intent, SCAN_SERIAL_REQUEST);
     }
 }

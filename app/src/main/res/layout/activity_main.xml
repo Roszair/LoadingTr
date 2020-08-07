@@ -27,7 +27,6 @@
             android:layout_marginTop="-4dp"
             android:layout_marginEnd="0dp"
             android:background="@drawable/button_background"
-            android:focusableInTouchMode="true"
             android:onClick="gate"
             android:text="Gate"
             android:textSize="15dp" />
@@ -44,7 +43,6 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="-1dp"
             android:background="@drawable/button_background"
-            android:focusableInTouchMode="true"
             android:onClick="transporter"
             android:text="Transporter"
             android:textSize="15dp" />
@@ -125,8 +123,6 @@
             android:layout_marginRight="2dp"
             android:layout_marginBottom="41dp"
             android:background="@drawable/button_background"
-            android:focusableInTouchMode="true"
-            android:onClick="next"
             android:text="Next" />
 
     </RelativeLayout>

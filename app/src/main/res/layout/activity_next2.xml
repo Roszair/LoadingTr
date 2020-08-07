@@ -21,15 +21,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginBottom="34dp"
             android:background="#F55B04"
-            android:focusableInTouchMode="true"
-            android:onClick="submitAPI"
             android:text="@string/submit_string" />
-
-        <me.dm7.barcodescanner.zxing.ZXingScannerView
-            android:id="@+id/zXingScannerViewMain"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_below="@id/datetime" />
 
         <Button
             android:id="@+id/btnClear"
@@ -40,7 +32,6 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="1dp"
             android:background="@drawable/button_background"
-            android:focusableInTouchMode="true"
             android:text="Clear"
             android:textSize="15dp" />
 
@@ -112,8 +103,8 @@
             android:layout_marginEnd="15dp"
             android:hint="Driver Name"
             android:textSize="15dp"/>
-                <requestFocus>
-                 </requestFocus>
+        <requestFocus>
+        </requestFocus>
 
 
         <EditText
@@ -146,7 +137,7 @@
             android:id="@+id/btnScanInvoiceUI"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_below="@id/zXingScannerViewMain"
+            android:layout_below="@id/datetime"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
@@ -165,8 +156,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-           android:layout_margin="5dp"
-            tools:text="Invoice Barcode View" />
+            android:layout_margin="5dp"
+            android:text="Invoice Barcode View" />
 
         <Button
             android:id="@+id/btnNextInvoice"
@@ -175,7 +166,6 @@
             android:layout_below="@+id/btnClear"
             android:layout_marginTop="8dp"
             android:background="@drawable/button_background"
-            android:focusableInTouchMode="true"
             android:text="Next Invoice"/>
 
         <Button
