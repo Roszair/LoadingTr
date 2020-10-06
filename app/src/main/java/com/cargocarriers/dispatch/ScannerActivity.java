@@ -52,7 +52,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         BarcodeFormat format = rawResult.getBarcodeFormat();
 
         Log.v(TAG, "Scanned code: " + rawResult.getText());
-        Log.v(TAG, "Scanend code type: " + rawResult.getBarcodeFormat().toString());
+        Log.v(TAG, "Scanned code type: " + rawResult.getBarcodeFormat().toString());
 
         //Return error
         if (result == null) {

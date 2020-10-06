@@ -63,7 +63,6 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
     private long transporterNo;
     private long dateTime;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

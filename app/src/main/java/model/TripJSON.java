@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class TripJSON {
 
-
         @SerializedName("TripId")
         @Expose
         private int tripId;
@@ -40,7 +39,7 @@ public class TripJSON {
     public TripJSON() {
     }
 
-    public TripJSON( String invoiceNo, long transporterId, long gateId, String truckRegNo, int receivedParcels, int receivedQuantity, String sealNumber) {
+    public TripJSON( String invoiceNo, long transporterId, long gateId, String truckRegNo, int receivedParcels, int receivedQuantity, String sealNumber, String driverName) {
 
             this.transporterId = transporterId;
             this.gateId = gateId;
@@ -49,13 +48,13 @@ public class TripJSON {
             this.receivedParcels = receivedParcels;
             this.receivedQuantity = receivedQuantity;
             this.sealNumber = sealNumber;
+            this.driverName = driverName;
         }
-
+    
     public static TripJSON converterTripJSON(Trip trip) {
-        return new TripJSON(trip.getInvoiceNo(),trip.getTransporterId(), trip.getGateId(), trip.getTruckRegNo(), trip.getReceivedParcels(), trip.getReceivedQuantity(), trip.getSealNumber());
+        return new TripJSON(trip.getInvoiceNo(),trip.getTransporterId(), trip.getGateId(), trip.getTruckRegNo(), trip.getReceivedParcels(), trip.getReceivedQuantity(), trip.getSealNumber(), trip.getDriverName());
 
     }
-
 
     public int getTripId() {
         return tripId;

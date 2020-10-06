@@ -18,3 +18,6 @@ enum class ResultMode(val id: Int) {
     }
 
 }
+
+
+
