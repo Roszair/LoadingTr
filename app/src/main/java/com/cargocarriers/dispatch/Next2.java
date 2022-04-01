@@ -18,22 +18,18 @@ import android.widget.Toast;
 import com.cargocarriers.objectbox.entities.trip.Trip;
 import com.cargocarriers.objectbox.entities.trip.TripData;
 
-import com.google.zxing.Result;
-
 import java.util.Date;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
 import Network.APIClient;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import model.TripJSON;
 import model.TripsApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.cargocarriers.dispatch.MainActivity.DATETIME_KEY;
 import static com.cargocarriers.dispatch.MainActivity.GATE_NO_KEY;
 import static com.cargocarriers.dispatch.MainActivity.SCAN_MODE;
 import static com.cargocarriers.dispatch.MainActivity.SCAN_SERIAL_REQUEST;
@@ -59,19 +55,18 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences sPref;
     final String SAVED_TEXT = "saved_text";
     private String truckRegNo;
-    private long gateNo;
-    private long transporterNo;
-    private long dateTime;
+    private String gateNo;
+    private String transporterNo;
+    private Date dateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next2);
 
-        dateTime = getIntent().getLongExtra(DATETIME_KEY, -1);
         truckRegNo = getIntent().getStringExtra(TRUCK_REG_NO_KEY);
-        gateNo = getIntent().getLongExtra(GATE_NO_KEY, -1);
-        transporterNo = getIntent().getLongExtra(TRANSPORTER_NO_KEY, -1);
+        gateNo = getIntent().getStringExtra(GATE_NO_KEY);
+        transporterNo = getIntent().getStringExtra(TRANSPORTER_NO_KEY);
 
         tripsApi = APIClient.getRetrofit().create(TripsApi.class);
 
@@ -195,13 +190,13 @@ public class Next2 extends AppCompatActivity implements View.OnClickListener {
     private void addTrip() {
         Trip trip = new Trip();
         trip.setInvoiceNo(invoiceNo);
-        trip.setGateId(gateNo);
+        trip.setGateNo(gateNo);
         trip.setReceivedParcels(receivedParcels);
         trip.setReceivedQuantity(receivedQuantity);
-        trip.setTransporterId(transporterNo);
+        trip.setTransporterNo(transporterNo);
         trip.setTruckRegNo(truckRegNo);
         trip.setDriverName(driverName);
-        trip.setSealNumber(sealNo);
+        trip.setSealNo(sealNo);
 
         tripHashMap.put(invoiceNo, trip);
     }

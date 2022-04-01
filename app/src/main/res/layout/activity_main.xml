@@ -12,42 +12,15 @@
         android:layout_height="wrap_content"
         tools:context=".MainActivity">
 
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/truckRegNo"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="-4dp"
-            android:layout_marginEnd="0dp"
-            android:background="@drawable/button_background"
-            android:onClick="gate"
-            android:text="Gate"
-            android:textSize="15dp" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/gateBarcodeTextView"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="-4dp"
-            android:layout_marginEnd="0dp"
-            android:background="@drawable/button_background"
-            android:onClick="transporter"
-            android:text="Transporter"
-            android:textSize="15dp" />
+            android:visibility="gone"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:layout_centerInParent="true" />
 
         <TextView
             android:id="@+id/datetime"
@@ -59,72 +32,253 @@
             android:layout_marginEnd="0dp"
             android:ems="10"
             android:inputType="date"
+            android:enabled="false"
             android:text="Date"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
 
-        <me.dm7.barcodescanner.zxing.ZXingScannerView
-            android:id="@+id/zXingScannerViewMain"
+        <ImageView
+            android:id="@+id/translogo"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_below="@+id/datetime" />
-
-        <EditText
-            android:id="@+id/truckRegNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/zXingScannerViewMain"
-            android:layout_alignStart="@+id/button"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="3dp"
-            android:hint="Truck Registration Number"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/gateBarcodeTextView"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_below="@+id/button"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="7dp"
-            android:text="Gate Barcode View" />
-
-        <TextView
-            android:id="@+id/transporterBarcodeView"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_below="@+id/button2"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="7dp"
-            android:layout_marginBottom="41dp"
-            android:text="Transporter Barcode View" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/datetime"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/translogo"/>
 
         <Button
-            android:id="@+id/btnNext"
+            android:id="@+id/btnScanInvoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/transporterBarcodeView"
+            android:layout_below="@+id/translogo"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
             android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="41dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/button_background"
-            android:text="Next" />
+            android:onClick="gate"
+            android:text="Scan Invoice"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtInvoiceNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnScanInvoice"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:enabled="false"
+            android:hint="Invoice Number"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtGateNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtInvoiceNo"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:enabled="false"
+            android:visibility="gone"
+            android:hint="Gate Number"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtGateName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtGateNo"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:enabled="false"
+            android:visibility="gone"
+            android:hint="Gate Name"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtTransporterNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtGateName"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:enabled="false"
+            android:hint="Transporter Number"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtTransporterName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtTransporterNo"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:enabled="false"
+            android:hint="Transporter Name"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtReceivedQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtTransporterName"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:hint="Received Quantity"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtReceivedParcels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtReceivedQuantity"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:hint="Received Parcels"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txtCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtReceivedParcels"
+            android:text="Is the package in good condition? Y/N"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:textSize="15sp"/>
+         <RadioGroup
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/txtCondition"
+             android:orientation="vertical"
+             android:id="@+id/rdGroup">
+
+             <RadioButton
+                 android:id="@+id/rbYes"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="100dp"
+                 android:onClick="onRadioButtonClicked"
+                 android:text="Yes"
+                 android:layout_marginStart="100dp" />
+
+             <RadioButton
+                 android:id="@+id/rbNo"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="-34dp"
+                 android:layout_marginRight="100dp"
+                 android:onClick="onRadioButtonClicked"
+                 android:text="No"
+                 android:layout_marginEnd="100dp" />
+
+
+         </RadioGroup>
+
+
+        <EditText
+            android:id="@+id/edtDriverName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtReceivedParcels"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            android:hint="Driver Name"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtTruckRegNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtDriverName"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            android:hint="Truck Registration Number"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtSealNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtTruckRegNo"
+            android:layout_alignStart="@+id/button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            android:hint="Seal Number"
+            android:textSize="15sp" />
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rdGroup">
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:text="Clear" />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toEndOf="@id/btnClear"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:text="Submit" />
+        </LinearLayout>
 
     </RelativeLayout>
 </ScrollView>

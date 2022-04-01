@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:4292640467526984794",
-      "lastPropertyId": "10:7794520817337244587",
+      "lastPropertyId": "18:5562924718170057519",
       "name": "Trip",
       "properties": [
         {
@@ -20,18 +20,6 @@
           "indexId": "1:7586902658381760878",
           "type": 9,
           "flags": 2080
-        },
-        {
-          "id": "3:484704793008078584",
-          "name": "transporterId",
-          "type": 6,
-          "flags": 4
-        },
-        {
-          "id": "4:9061861085783309764",
-          "name": "gateId",
-          "type": 6,
-          "flags": 4
         },
         {
           "id": "5:3218424950829492607",
@@ -51,11 +39,6 @@
           "flags": 4
         },
         {
-          "id": "8:4801495346510205207",
-          "name": "sealNumber",
-          "type": 9
-        },
-        {
           "id": "9:7907501578106321466",
           "name": "driverName",
           "type": 9
@@ -63,6 +46,49 @@
         {
           "id": "10:7794520817337244587",
           "name": "syncStatus",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "11:9209058542383421373",
+          "name": "transporterNo",
+          "type": 9
+        },
+        {
+          "id": "12:982552222876663212",
+          "name": "gateNo",
+          "type": 9
+        },
+        {
+          "id": "13:7570380610653856402",
+          "name": "transporterName",
+          "type": 9
+        },
+        {
+          "id": "14:3038467411660799330",
+          "name": "gateName",
+          "type": 9
+        },
+        {
+          "id": "15:5617305051888854988",
+          "name": "dispatchDate",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "16:5422342542675238930",
+          "name": "sealNo",
+          "type": 9
+        },
+        {
+          "id": "17:6418374962190478188",
+          "name": "issuedQuantity",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "18:5562924718170057519",
+          "name": "issuedParcels",
           "type": 5,
           "flags": 4
         }
@@ -78,7 +104,11 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    484704793008078584,
+    9061861085783309764,
+    4801495346510205207
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

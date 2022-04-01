@@ -14,7 +14,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://10.0.0.244:9093/";
+
+    private static final String BASE_URL = "http://192.168.10.106:9093/"; // include your own IP address
+
+
     private static OkHttpClient okHttpClient;
     private static int REQUEST_TIMEOUT = 100;
 

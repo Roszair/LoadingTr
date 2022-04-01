@@ -26,7 +26,7 @@ private static final String TAG = DispatchApplication.class.getSimpleName();
         initTimeIntervalWorker(this);
     }
     private void initTimeIntervalWorker(Context context) {
-        Log.d(TAG, "Setup periodice workwers");
+        Log.d(TAG, "Setup periodic workers");
 
         //Cancel all previous tasks
          WorkManager wm = WorkManager.getInstance(context.getApplicationContext());
